@@ -70,6 +70,9 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         SynUser synUser = new SynUser(SettingActivity.this);
         synUser.execute(urlJSON);
 
+        //Check Radio Button
+        checkRadioButton(); //จะทำการ เช็คว่า ของเก่าเลือกเบอร์ไหนสำหรับโทรออก
+
         //Create ListView Show Friend
         showListFriend();
 
@@ -91,6 +94,47 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
 
     }//Main Method
+
+    private void checkRadioButton() {
+
+        String strID = null;
+
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM phoneTABLE WHERE Action = 1", null);
+        if (cursor.getCount() != 0) {
+
+            cursor.moveToFirst();
+            strID = cursor.getString(0);
+            Log.d("26janV2", "strID ==> " + strID);
+
+            markRadioButton(Integer.parseInt(strID));
+
+        }   // if
+
+    }   // checkRadio
+
+    private void markRadioButton(int intPosition) {
+
+        switch (intPosition) {
+            case 1:
+                phone1RadioButton.setChecked(true);
+                break;
+            case 2:
+                phone2RadioButton.setChecked(true);
+                break;
+            case 3:
+                phone3RadioButton.setChecked(true);
+                break;
+            case 4:
+                phone4RadioButton.setChecked(true);
+                break;
+            case 5:
+                phone5RadioButton.setChecked(true);
+                break;
+        }
+
+    }   // markRadioButton
 
     public void clickCancelSetting(View view) {
         finish();
@@ -529,7 +573,6 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             startActivity(intent);
             finish();
         }
-
 
 
     }//addPhone
