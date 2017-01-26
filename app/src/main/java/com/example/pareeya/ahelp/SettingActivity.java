@@ -92,6 +92,10 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
     }//Main Method
 
+    public void clickCancelSetting(View view) {
+        finish();
+    }
+
     private void showListFriend() {
 
         try {
@@ -470,50 +474,63 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
     private void addPhoneToSQLite() {
 
-        Log.d("8decV1", "Leangth of arryList ==>" + idCallStringsArrayList.size());
-        Log.d("8decV1", "radioChoose==>" + indexRadioChoose);
+
+        if (idCallStringsArrayList.size() == 0) {
+
+            MyAlert myAlert = new MyAlert();
+            myAlert.myDialog(SettingActivity.this, "Title", "Message ที่จะบอกว่า ให้ลบทั้งหมดก่อน");
+
+        } else {
+
+            Log.d("8decV1", "Leangth of arryList ==>" + idCallStringsArrayList.size());
+            Log.d("8decV1", "radioChoose==>" + indexRadioChoose);
+
+            Log.d("26janV1", "idCallStringsArrayList ==> " + idCallStringsArrayList.toString());
 
 
-        try {
-            actionStringArrayList = new ArrayList<String>();
+            try {
+                actionStringArrayList = new ArrayList<String>();
 
+                for (int i = 0; i < idCallStringsArrayList.size(); i++) {
+
+                    if (i == indexRadioChoose) {
+                        actionStringArrayList.add("1");
+                    } else {
+                        actionStringArrayList.add("0");
+                    }
+
+                }//for
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Log.d("8decV1", "actionArrayList==>" + actionStringArrayList);
+            Log.d("8DecV1", "idCallArrayList ==>" + idCallStringsArrayList);
+            Log.d("8DecV1", "myPhoneArrayList ==>" + myPhoneStringArrayList);
+
+            SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                    MODE_PRIVATE, null);
+
+
+            sqLiteDatabase.delete(MyManage.table_phone, null, null);
+
+            MyManage myManage = new MyManage(SettingActivity.this);
             for (int i = 0; i < idCallStringsArrayList.size(); i++) {
 
-                if (i == indexRadioChoose) {
-                    actionStringArrayList.add("1");
-                } else {
-                    actionStringArrayList.add("0");
-                }
+                myManage.addPhoneToSQLite(idCallStringsArrayList.get(i),
+                        myPhoneStringArrayList.get(i),
+                        actionStringArrayList.get(i));
 
             }//for
 
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            Intent intent = new Intent(SettingActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
         }
 
-        Log.d("8decV1", "actionArrayList==>" + actionStringArrayList);
-        Log.d("8DecV1", "idCallArrayList ==>" + idCallStringsArrayList);
-        Log.d("8DecV1", "myPhoneArrayList ==>" + myPhoneStringArrayList);
 
-        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
-                MODE_PRIVATE, null);
-
-
-        //sqLiteDatabase.delete(MyManage.table_phone, null, null);
-
-        MyManage myManage = new MyManage(SettingActivity.this);
-        for (int i = 0; i < idCallStringsArrayList.size(); i++) {
-
-            myManage.addPhoneToSQLite(idCallStringsArrayList.get(i),
-                    myPhoneStringArrayList.get(i),
-                    actionStringArrayList.get(i));
-
-        }//for
-
-        Intent intent = new Intent(SettingActivity.this, HomeActivity.class);
-        startActivity(intent);
-        finish();
 
     }//addPhone
 
