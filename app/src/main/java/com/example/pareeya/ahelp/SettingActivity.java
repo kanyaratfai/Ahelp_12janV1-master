@@ -522,7 +522,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         if (idCallStringsArrayList.size() == 0) {
 
             MyAlert myAlert = new MyAlert();
-            myAlert.myDialog(SettingActivity.this, "Title", "Message ที่จะบอกว่า ให้ลบทั้งหมดก่อน");
+            myAlert.myDialog(SettingActivity.this, "ไม่มีการแก้ไขข้อมูลใหม่", "กรุณาลบข้อมูลทั้งหมดใหม่ แล้วทำการตั้งค่าผู้ช่วยเหลือใหม่ทั้งหมด ถ้าไม่มีการแก้ไขข้อมูลกรุณากดปุ่ม ยกเลิก");
 
         } else {
 
