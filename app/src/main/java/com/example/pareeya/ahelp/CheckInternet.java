@@ -10,6 +10,7 @@ import android.util.Log;
  * Created by masterUNG on 11/26/2016 AD.
  */
 
+
 public class CheckInternet extends AsyncTask<Void, Void, String>{
 
 
