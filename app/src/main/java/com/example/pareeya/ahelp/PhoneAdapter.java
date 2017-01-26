@@ -50,7 +50,8 @@ public class PhoneAdapter extends BaseAdapter{
         TextView textView1 = (TextView) view1.findViewById(R.id.textView13);
 
         textView.setText(nameStrings[i]);
-        textView1.setText(phoneStrings[i]);
+//        textView1.setText(phoneStrings[i]);
+        textView1.setText("");
 
         return view1;
     }
