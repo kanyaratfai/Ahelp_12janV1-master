@@ -261,14 +261,17 @@
             android:layout_weight="1"
             android:textSize="18sp"
             android:textColor="#ffffff"
-            android:background="#1c6ab3"
+            android:background="#037f1f"
             android:textStyle="bold"
             android:onClick="clickSetting"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:paddingBottom="10dp"
-            android:paddingTop="10dp" />
+            android:paddingTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="2dp" />
 
 
         <Button
@@ -280,14 +283,17 @@
             android:layout_weight="1"
             android:textSize="18sp"
             android:textColor="#ffffff"
-            android:background="#1c6ab3"
+            android:background="#d8000e"
             android:textStyle="bold"
             android:onClick="clickCancelSetting"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:paddingBottom="10dp"
-            android:paddingTop="10dp" />
+            android:paddingTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="2dp" />
 
     </LinearLayout>
 
